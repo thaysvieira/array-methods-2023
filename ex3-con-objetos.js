@@ -296,21 +296,38 @@ const flightReservations = [
 ];
 
 // Usa el método forEach para iterar por cada uno de los vuelos y mostrarlos por consola
+flightReservations.forEach(vuelo=>console.log(vuelo))
 
 // Usa el método forEach para mostrar UNICAMENTE el pasajero de cada uno de lo vuelos
+flightReservations.forEach(vuelo=>console.log(vuelo.passenger))
 
 // USa el método find para encontrar el vuelo número 'AA456'. Luego, muestra por consola el precio total de este vuelo
+const findFlight= flightReservations.find(numberFlight=>numberFlight.flightNumber==="AA456");
+console.log(findFlight);
 
 // Usa el método find para encontrar el vuelo que ha reservado el señor bob.johnson@example.com. Muestra el objeto entero
+const findByEmail=flightReservations.find(info=>info.passenger.contactInfo.email==="bob.johnson@example.com");
+console.log(findByEmail);
 
 // Usa el método some para averiguar si algún vuelo tiene como destino el aeropuerto de LPA GRAN CANARIA
+const airport=flightReservations.some(info=>info.arrival==="LPA GRAN CANARIA");
+console.log(airport);
 
 // Usa el método every para comprobar si todos los vuelos están confirmados (isConfirmed)
+flightReservations.every(info=>console.log(info.isConfirmed));
 
 // Usa el método filter para obtener todos los vuelos que tienen la puerta de embarque 'D5'
+const gate=flightReservations.filter(gate=>gate.gate.match("D5"));
+console.log(gate);
 
 // Usa el método filter para obtener todos los vuelos que incluyen menús con comida Vegan. BONUS: Muestra por consola el nombre de la aerolínea
+const vegan =flightReservations.filter(veganFood=>veganFood.specialMeals.find(findFood=>findFood.match("Vegan")));
+console.log(vegan);
 
 // Usa el método map para convertir cada objeto en un string con el formato 'numero de vuelo'-'compañía area'´Ejemplo : "AA456-American Airlines"
+flightReservations.map(infoFlight=>console.log(infoFlight.flightNumber +" - "+infoFlight.airline))
 
 // DIFICIL. USA el método reduce para sumar el conjunto total de puntos obtenidos de loyalyProgram de todos los tickets
+const initialValue = 0;
+const sumWithInitial=flightReservations.reduce((acumulator,count)=> acumulator+count.loyaltyProgram.points,initialValue);
+console.log(sumWithInitial);
